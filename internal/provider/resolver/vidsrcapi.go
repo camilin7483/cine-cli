@@ -93,30 +93,30 @@ func parseEmbedMeta(embedURL string) (mediaType string, tmdbID, season, episode 
 	}
 	// patterns: /movie/27205  /tv/1396/1/1  ?tmdb=27205
 	if id := q.Get("tmdb"); id != "" {
-		fmt.Sscanf(id, "%d", &tmdbID)
+		_, _ = fmt.Sscanf(id, "%d", &tmdbID)
 	}
 	parts := strings.Split(strings.Trim(path, "/"), "/")
 	for i, p := range parts {
 		if p == "movie" && i+1 < len(parts) {
-			fmt.Sscanf(parts[i+1], "%d", &tmdbID)
+			_, _ = fmt.Sscanf(parts[i+1], "%d", &tmdbID)
 			mediaType = "movie"
 		}
 		if p == "tv" && i+1 < len(parts) {
 			mediaType = "tv"
-			fmt.Sscanf(parts[i+1], "%d", &tmdbID)
+			_, _ = fmt.Sscanf(parts[i+1], "%d", &tmdbID)
 			if i+2 < len(parts) {
-				fmt.Sscanf(parts[i+2], "%d", &season)
+				_, _ = fmt.Sscanf(parts[i+2], "%d", &season)
 			}
 			if i+3 < len(parts) {
-				fmt.Sscanf(parts[i+3], "%d", &episode)
+				_, _ = fmt.Sscanf(parts[i+3], "%d", &episode)
 			}
 		}
 	}
 	if season == 0 {
-		fmt.Sscanf(q.Get("season"), "%d", &season)
+		_, _ = fmt.Sscanf(q.Get("season"), "%d", &season)
 	}
 	if episode == 0 {
-		fmt.Sscanf(q.Get("episode"), "%d", &episode)
+		_, _ = fmt.Sscanf(q.Get("episode"), "%d", &episode)
 	}
 	if tmdbID == 0 {
 		return "", 0, 0, 0, fmt.Errorf("cannot parse tmdb id from %s", embedURL)

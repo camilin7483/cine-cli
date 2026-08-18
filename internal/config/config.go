@@ -10,44 +10,44 @@ import (
 )
 
 const (
-	DefaultConfigDir   = ".config/cine-cli"
-	DefaultDataDir     = ".local/share/cine-cli"
-	DefaultDownloadSub = "cine-cli"
-	DefaultPluginSub   = "plugins"
-	DefaultConfigFile  = "config.yaml"
-	DefaultCacheTTL    = 3600
-	DefaultMaxResults  = 50
+	DefaultConfigDir    = ".config/cine-cli"
+	DefaultDataDir      = ".local/share/cine-cli"
+	DefaultDownloadSub  = "cine-cli"
+	DefaultPluginSub    = "plugins"
+	DefaultConfigFile   = "config.yaml"
+	DefaultCacheTTL     = 3600
+	DefaultMaxResults   = 50
 	DefaultMaxDownloads = 3
 	DefaultHistoryMax   = 500
 )
 
 type Config struct {
-	Provider              string                   `yaml:"provider"`
-	Player                string                   `yaml:"player"`
-	Quality               string                   `yaml:"quality"`
-	Language              string                   `yaml:"language"`
-	TMDBAPIKey            string                   `yaml:"tmdb_api_key"`
-	DataDir               string                   `yaml:"data_dir"`
-	MPVArgs               []string                 `yaml:"mpv_args"`
-	VLCArgs               []string                 `yaml:"vlc_args"`
-	CacheTTL              int                      `yaml:"cache_ttl"`
-	Theme                 string                   `yaml:"theme"`
-	MaxResults            int                      `yaml:"max_results"`
-	SubtitlesLanguage      string                   `yaml:"subtitles_language"`
-	SubtitlesEnabled       bool                     `yaml:"subtitles_enabled"`
-	OpenSubtitlesAPIKey    string                   `yaml:"opensubtitles_api_key"`
-	DownloadDir            string                   `yaml:"download_dir"`
-	MaxConcurrentDownloads int                      `yaml:"max_concurrent_downloads"`
-	AutoCheckUpdates       bool                     `yaml:"auto_check_updates"`
-	UpdateChannel          string                   `yaml:"update_channel"`
-	PluginDir              string                   `yaml:"plugin_dir"`
-	ThemeMode              string                   `yaml:"theme_mode"`
-	Keybindings            map[string]string        `yaml:"keybindings"`
-	SmartSelection         SmartSelectionConfig     `yaml:"smart_selection"`
-	PlayerDetection        PlayerDetectionConfig    `yaml:"player_detection"`
-	Proxy                  string                   `yaml:"proxy"`
-	DefaultQuality         string                   `yaml:"default_quality"`
-	HistoryMaxItems        int                      `yaml:"history_max_items"`
+	Provider               string                `yaml:"provider"`
+	Player                 string                `yaml:"player"`
+	Quality                string                `yaml:"quality"`
+	Language               string                `yaml:"language"`
+	TMDBAPIKey             string                `yaml:"tmdb_api_key"`
+	DataDir                string                `yaml:"data_dir"`
+	MPVArgs                []string              `yaml:"mpv_args"`
+	VLCArgs                []string              `yaml:"vlc_args"`
+	CacheTTL               int                   `yaml:"cache_ttl"`
+	Theme                  string                `yaml:"theme"`
+	MaxResults             int                   `yaml:"max_results"`
+	SubtitlesLanguage      string                `yaml:"subtitles_language"`
+	SubtitlesEnabled       bool                  `yaml:"subtitles_enabled"`
+	OpenSubtitlesAPIKey    string                `yaml:"opensubtitles_api_key"`
+	DownloadDir            string                `yaml:"download_dir"`
+	MaxConcurrentDownloads int                   `yaml:"max_concurrent_downloads"`
+	AutoCheckUpdates       bool                  `yaml:"auto_check_updates"`
+	UpdateChannel          string                `yaml:"update_channel"`
+	PluginDir              string                `yaml:"plugin_dir"`
+	ThemeMode              string                `yaml:"theme_mode"`
+	Keybindings            map[string]string     `yaml:"keybindings"`
+	SmartSelection         SmartSelectionConfig  `yaml:"smart_selection"`
+	PlayerDetection        PlayerDetectionConfig `yaml:"player_detection"`
+	Proxy                  string                `yaml:"proxy"`
+	DefaultQuality         string                `yaml:"default_quality"`
+	HistoryMaxItems        int                   `yaml:"history_max_items"`
 
 	Hooks HooksConfig `yaml:"hooks"`
 }
@@ -75,31 +75,31 @@ type HooksConfig struct {
 func Default() *Config {
 	home, _ := os.UserHomeDir()
 	return &Config{
-		Provider:              "vidsrc",
-		Player:                "mpv",
-		Quality:               "",
-		Language:              "es",
-		TMDBAPIKey:            "",
-		DataDir:               filepath.Join(home, DefaultDataDir),
-		MPVArgs:               []string{"--hwdec=auto"},
-		VLCArgs:               []string{},
-		CacheTTL:              DefaultCacheTTL,
-		Theme:                 "auto",
-		MaxResults:            DefaultMaxResults,
-		SubtitlesLanguage:     "es",
-		SubtitlesEnabled:      true,
-		OpenSubtitlesAPIKey:   "",
-		DownloadDir:           filepath.Join(home, "Downloads", DefaultDownloadSub),
+		Provider:               "vidsrc",
+		Player:                 "mpv",
+		Quality:                "",
+		Language:               "es",
+		TMDBAPIKey:             "",
+		DataDir:                filepath.Join(home, DefaultDataDir),
+		MPVArgs:                []string{"--hwdec=auto"},
+		VLCArgs:                []string{},
+		CacheTTL:               DefaultCacheTTL,
+		Theme:                  "auto",
+		MaxResults:             DefaultMaxResults,
+		SubtitlesLanguage:      "es",
+		SubtitlesEnabled:       true,
+		OpenSubtitlesAPIKey:    "",
+		DownloadDir:            filepath.Join(home, "Downloads", DefaultDownloadSub),
 		MaxConcurrentDownloads: DefaultMaxDownloads,
-		AutoCheckUpdates:      true,
-		UpdateChannel:         "stable",
-		PluginDir:             filepath.Join(home, DefaultConfigDir, DefaultPluginSub),
-		ThemeMode:             "dark",
+		AutoCheckUpdates:       true,
+		UpdateChannel:          "stable",
+		PluginDir:              filepath.Join(home, DefaultConfigDir, DefaultPluginSub),
+		ThemeMode:              "dark",
 		Keybindings: map[string]string{
-			"play":    "space",
-			"quit":    "q",
-			"search":  "/",
-			"select":  "enter",
+			"play":   "space",
+			"quit":   "q",
+			"search": "/",
+			"select": "enter",
 		},
 		SmartSelection: SmartSelectionConfig{
 			Enabled:          true,

@@ -78,9 +78,7 @@ func (p *MPV) Play(ctx context.Context, opts core.PlayOptions) error {
 			args = append(args, "--sub-file="+sub.URL)
 		}
 	}
-	for _, extra := range opts.ExtraArgs {
-		args = append(args, extra)
-	}
+	args = append(args, opts.ExtraArgs...)
 	args = append(args, p.args...)
 	args = append(args, playURL)
 

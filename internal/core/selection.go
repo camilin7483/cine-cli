@@ -8,11 +8,11 @@ type SelectionRule struct {
 }
 
 type SelectionConfig struct {
-	Rules          []SelectionRule `json:"rules"`
-	PreferredQuality string        `json:"preferred_quality"`
-	PreferredLang    string        `json:"preferred_lang"`
-	AutoSubtitles    bool          `json:"auto_subtitles"`
-	MinBandwidth     int           `json:"min_bandwidth"`
+	Rules            []SelectionRule `json:"rules"`
+	PreferredQuality string          `json:"preferred_quality"`
+	PreferredLang    string          `json:"preferred_lang"`
+	AutoSubtitles    bool            `json:"auto_subtitles"`
+	MinBandwidth     int             `json:"min_bandwidth"`
 }
 
 func DefaultSelectionConfig() SelectionConfig {

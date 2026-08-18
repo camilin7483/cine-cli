@@ -145,7 +145,7 @@ func (b *Browser) Resolve(ctx context.Context, embedURL string) (*StreamResult, 
 		})()`, &clicked))
 
 		if clicked {
-			 _ = chromedp.Run(timeoutCtx, chromedp.Sleep(5*time.Second))
+			_ = chromedp.Run(timeoutCtx, chromedp.Sleep(5*time.Second))
 		}
 
 		mu.Lock()
@@ -264,7 +264,6 @@ func isStreamURL(url string) bool {
 	return strings.Contains(lower, ".m3u8") ||
 		(strings.Contains(lower, ".mp4") && !strings.Contains(lower, ".html"))
 }
-
 
 var m3u8Re = regexp.MustCompile(`https?://[^"'\s<>]+\.m3u8[^"'\s<>]*`)
 var iframeRe = regexp.MustCompile(`<iframe[^>]+src=["']([^"']+)["']`)

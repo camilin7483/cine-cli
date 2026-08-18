@@ -56,10 +56,10 @@ func (a *App) watchlistCmd() *cobra.Command {
 			Args:  cobra.MinimumNArgs(2),
 			RunE: func(cmd *cobra.Command, args []string) error {
 				return a.DB.AddWatchlistItem(cmd.Context(), core.WatchlistItem{
-					MediaID:   args[0],
-					Title:     strings.Join(args[1:], " "),
-					Status:    "pending",
-					AddedAt:   time.Now(),
+					MediaID: args[0],
+					Title:   strings.Join(args[1:], " "),
+					Status:  "pending",
+					AddedAt: time.Now(),
 				})
 			},
 		},

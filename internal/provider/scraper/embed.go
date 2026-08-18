@@ -9,7 +9,6 @@ import (
 	"github.com/cam/cine-cli/internal/provider/resolver"
 )
 
-
 type embedProvider struct {
 	name     string
 	priority int
@@ -109,7 +108,7 @@ func (p *embedProvider) GetStream(ctx context.Context, ref core.MediaRef) (*core
 		mediaType := "movie"
 		season, episode := 0, 0
 		tmdbID := 0
-		fmt.Sscanf(tmdbPart(ref.ProviderID), "%d", &tmdbID)
+		_, _ = fmt.Sscanf(tmdbPart(ref.ProviderID), "%d", &tmdbID)
 		if ref.MediaType == core.MediaTypeSeries {
 			mediaType = "tv"
 			season, episode = parseSE(ref.ProviderID)
@@ -254,7 +253,7 @@ func isM3U8(url string) bool {
 }
 
 func toSubtitles(subs []resolver.SubData) []core.Subtitle {
-	result := make([]core.Subtitle, 0)
+	result := make([]core.Subtitle, 0, len(subs))
 	for _, s := range subs {
 		result = append(result, core.Subtitle{URL: s.URL, Lang: s.Lang})
 	}

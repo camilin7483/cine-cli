@@ -80,7 +80,7 @@ func (a *App) runQuickPlay(ctx context.Context, query string) error {
 
 	var stream *core.Stream
 	var usedProvider string
-	var bestScore int = -1
+	var bestScore = -1
 
 	for _, pname := range providers {
 		ref := core.MediaRef{

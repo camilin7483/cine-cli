@@ -42,9 +42,9 @@ type searchResponse struct {
 	Data []struct {
 		ID         string `json:"id"`
 		Attributes struct {
-			Language       string `json:"language"`
-			DownloadCount  int    `json:"download_count"`
-			Files          []struct {
+			Language      string `json:"language"`
+			DownloadCount int    `json:"download_count"`
+			Files         []struct {
 				FileID   int    `json:"file_id"`
 				FileName string `json:"file_name"`
 			} `json:"files"`

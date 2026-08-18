@@ -12,20 +12,20 @@ import (
 )
 
 type Dashboard struct {
-	TotalHoursWatched  float64
-	TotalMovies        int
-	TotalEpisodes      int
-	TotalShows         int
-	FavoriteGenres     map[string]int
-	TopActors          map[string]int
-	MostUsedProviders  map[string]int
-	WeeklyActivity     map[string]int
-	Favorites          int
-	Watchlist          int
-	Downloads          int
-	ContinueWatching   int
-	StreakDays         int
-	MostWatched        string
+	TotalHoursWatched float64
+	TotalMovies       int
+	TotalEpisodes     int
+	TotalShows        int
+	FavoriteGenres    map[string]int
+	TopActors         map[string]int
+	MostUsedProviders map[string]int
+	WeeklyActivity    map[string]int
+	Favorites         int
+	Watchlist         int
+	Downloads         int
+	ContinueWatching  int
+	StreakDays        int
+	MostWatched       string
 
 	db  *database.Store
 	cfg *config.Config
@@ -204,28 +204,28 @@ func (d *Dashboard) Format() string {
 	sb.WriteString("\n")
 
 	sb.WriteString("  \u2500\u2500 Overview \u2500\u2500\n")
-	sb.WriteString(fmt.Sprintf("  Total Hours Watched: %.1f h\n", d.TotalHoursWatched))
-	sb.WriteString(fmt.Sprintf("  Movies Watched:      %d\n", d.TotalMovies))
-	sb.WriteString(fmt.Sprintf("  TV Episodes Watched: %d\n", d.TotalEpisodes))
-	sb.WriteString(fmt.Sprintf("  TV Shows Watched:    %d\n", d.TotalShows))
-	sb.WriteString(fmt.Sprintf("  Day Streak:          %d days\n", d.StreakDays))
+	fmt.Fprintf(&sb, "  Total Hours Watched: %.1f h\n", d.TotalHoursWatched)
+	fmt.Fprintf(&sb, "  Movies Watched:      %d\n", d.TotalMovies)
+	fmt.Fprintf(&sb, "  TV Episodes Watched: %d\n", d.TotalEpisodes)
+	fmt.Fprintf(&sb, "  TV Shows Watched:    %d\n", d.TotalShows)
+	fmt.Fprintf(&sb, "  Day Streak:          %d days\n", d.StreakDays)
 	if d.MostWatched != "" {
-		sb.WriteString(fmt.Sprintf("  Most Watched:        %s\n", d.MostWatched))
+		fmt.Fprintf(&sb, "  Most Watched:        %s\n", d.MostWatched)
 	}
 	sb.WriteString("\n")
 
 	sb.WriteString("  \u2500\u2500 Collections \u2500\u2500\n")
-	sb.WriteString(fmt.Sprintf("  Favorites:          %d\n", d.Favorites))
-	sb.WriteString(fmt.Sprintf("  Watchlist:          %d\n", d.Watchlist))
-	sb.WriteString(fmt.Sprintf("  Downloads:          %d\n", d.Downloads))
-	sb.WriteString(fmt.Sprintf("  Continue Watching:  %d\n", d.ContinueWatching))
+	fmt.Fprintf(&sb, "  Favorites:          %d\n", d.Favorites)
+	fmt.Fprintf(&sb, "  Watchlist:          %d\n", d.Watchlist)
+	fmt.Fprintf(&sb, "  Downloads:          %d\n", d.Downloads)
+	fmt.Fprintf(&sb, "  Continue Watching:  %d\n", d.ContinueWatching)
 	sb.WriteString("\n")
 
 	if len(d.MostUsedProviders) > 0 {
 		sb.WriteString("  \u2500\u2500 Most Used Providers \u2500\u2500\n")
 		sorted := sortedPairs(d.MostUsedProviders)
 		for _, item := range sorted {
-			sb.WriteString(fmt.Sprintf("  %s: %d\n", item.key, item.value))
+			fmt.Fprintf(&sb, "  %s: %d\n", item.key, item.value)
 		}
 		sb.WriteString("\n")
 	}
@@ -242,7 +242,7 @@ func (d *Dashboard) Format() string {
 		for _, dow := range dowOrder {
 			count := d.WeeklyActivity[dow]
 			bar := buildBar(count, maxCount, 20)
-			sb.WriteString(fmt.Sprintf("  %s %s %d\n", dow, bar, count))
+			fmt.Fprintf(&sb, "  %s %s %d\n", dow, bar, count)
 		}
 		sb.WriteString("\n")
 	}
@@ -251,7 +251,7 @@ func (d *Dashboard) Format() string {
 		sb.WriteString("  \u2500\u2500 Favorite Genres \u2500\u2500\n")
 		sorted := sortedPairs(d.FavoriteGenres)
 		for _, item := range sorted {
-			sb.WriteString(fmt.Sprintf("  %s: %d\n", item.key, item.value))
+			fmt.Fprintf(&sb, "  %s: %d\n", item.key, item.value)
 		}
 		sb.WriteString("\n")
 	}
@@ -265,7 +265,7 @@ type pair struct {
 }
 
 func sortedPairs(m map[string]int) []pair {
-	result := make([]pair, 0)
+	result := make([]pair, 0, len(m))
 	for k, v := range m {
 		result = append(result, pair{k, v})
 	}

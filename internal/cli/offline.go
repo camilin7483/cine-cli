@@ -35,7 +35,7 @@ func (a *App) offlineCmd() *cobra.Command {
 				}
 				name := e.Name()
 				low := strings.ToLower(name)
-				if !(strings.HasSuffix(low, ".mp4") || strings.HasSuffix(low, ".mkv") || strings.HasSuffix(low, ".webm") || strings.HasSuffix(low, ".m3u8")) {
+				if !strings.HasSuffix(low, ".mp4") && !strings.HasSuffix(low, ".mkv") && !strings.HasSuffix(low, ".webm") && !strings.HasSuffix(low, ".m3u8") {
 					continue
 				}
 				info, _ := e.Info()

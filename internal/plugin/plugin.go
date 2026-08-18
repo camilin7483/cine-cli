@@ -151,7 +151,7 @@ func (r *Registry) List() []PluginInstance {
 	r.mu.RLock()
 	defer r.mu.RUnlock()
 
-	result := make([]PluginInstance, 0)
+	result := make([]PluginInstance, 0, len(r.plugins))
 	for _, p := range r.plugins {
 		result = append(result, *p)
 	}

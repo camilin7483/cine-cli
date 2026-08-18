@@ -24,9 +24,9 @@ func NewVidsrcResolver() *VidsrcResolver {
 		client: &http.Client{
 			Timeout: 12 * time.Second,
 			Transport: &http.Transport{
-				MaxIdleConns:        10,
-				IdleConnTimeout:     30 * time.Second,
-				DisableCompression:  false,
+				MaxIdleConns:       10,
+				IdleConnTimeout:    30 * time.Second,
+				DisableCompression: false,
 			},
 		},
 	}
