@@ -1,0 +1,4 @@
+cine
+cine-cli
+*.db
+*.db-journal

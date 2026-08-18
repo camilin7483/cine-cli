@@ -1,0 +1,12 @@
+provider: vidsrc
+player: mpv
+quality: ""
+language: en-US
+tmdb_api_key: ""
+data_dir: ~/.local/share/cine-cli
+mpv_args:
+  - "--hwdec=auto"
+  - "--volume=70"
+cache_ttl: 3600
+theme: auto
+max_results: 50

@@ -1,0 +1,25 @@
+builds:
+  - id: cine
+    main: ./cmd/cine
+    binary: cine
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w -X github.com/cam/cine-cli/internal/cli.version={{.Version}}
+
+archives:
+  - formats: [tar.gz]
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+
+changelog:
+  use: github
+
+checksum:
+  name_template: checksums.txt
